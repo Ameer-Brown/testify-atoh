@@ -1,0 +1,41 @@
+
+  <h4>Edit Profile</h4>
+    <div class="row">
+      <div class="col-xs-10">
+        <%= form_for(@testimony, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+          <div class="form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label :picture %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.file_field :picture %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label :video %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.file_field :video %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label :testify %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.text_field :message %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label :submit %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.submit "Submit", class: "btn btn-primary" %>
+              <%= link_to "Cancel", :back, class: "btn btn-default" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>

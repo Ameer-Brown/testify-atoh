@@ -1,0 +1,15 @@
+<center>
+    <div id="forms">
+        <div class="container">
+            <h4>Leave a Comment</h4>
+            <div class="comments">
+                <div class"form-group">
+                    <%= form_for [@testimony, @comment], url: testimony_comments_path do |f| %>
+                    <%= f.text_area :comment, placeholder: "Comment" %>
+                    <%= f.submit "Comment", class: "btn btn-info" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>

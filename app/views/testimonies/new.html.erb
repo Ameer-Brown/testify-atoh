@@ -1,0 +1,51 @@
+<center>
+    <div id="jumbotron_search" class="jumbotron img-responsive">
+        <%= form_tag new_testimony_path, :method => 'get' do %>
+        <p id="search_text" class="container">
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil, class: "btn" %>
+        </p>
+        <% end %>
+    </div>
+</center>
+<center>
+    <h1 id="title_text">Verses</h1>
+</center>
+<center>
+    <div>
+            <%if @testimonies["content-length"] != "0"%>
+            <% @testimonies["results"].each_slice(3) do |ts| %>
+            <div class="row">
+              <% ts.each do |t| %>
+                    <div class="card col-md-4">
+                        <div class="card-image">
+                            <% @title = t["title"] %>
+                            <img src="https://images.unsplash.com/photo-1440407876336-62333a6f010f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=aef01806defa8b0c87dd1243e2db2dba" class="img-responsive">
+                            <span class="card-title"><%=@title%></span>
+                        </div>
+
+                        <div class="card-content light-blue lighten-5">
+                            <%@verse = t["preview"]%>
+                            <%=@verse.truncate(300)%>
+                        </div>
+                        <div class="card-action">
+                            <% @user_id = current_user.id %>
+                            <!-- Hidden Form -->
+                            <%= form_for @testimony, url: {action: "create"} do |f| %>
+                            <%= f.hidden_field :title, :value => @title %>
+                            <%= f.hidden_field :verse, :value => @verse %>
+                            <%= f.hidden_field :user_id, :value => @user_id %>
+                            <%= button_tag(type: "submit", class: "btn") do %>
+                            Save
+                            <i class="glyphicon glyphicon-star"></i>
+                            <% end %>
+                            <% end %>
+                            <!-- End Hidden Form -->
+                        </div>
+                    </div>&nbsp
+                    <% end %>
+            </div>
+            <% end %>
+            <% end %>
+    </div>
+  </center>

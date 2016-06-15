@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testify</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:500,900,200' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-wrapper">
+                    <%= link_to "Testify", index_path, class: "navbar-brand" %>
+                  </div>
+                  <a href="#" data-activates="mobile-demo" class="button-collapse right naver"><i class="material-icons">menu</i></a>
+                    <ul class="nav navbar-nav right hide-on-med-and-down">
+                        <% if current_user %>
+                        <li><%= link_to "Timeline", testimonies_path, class: "naver" %></li>
+                        <li><%= link_to "Search Verses", new_testimony_path, class: "naver" %></li>
+                        <li><%= link_to "Profile", user_path(current_user), class: "naver" %></li>
+                        <li class="naver"><%= link_to "Log Out", logout_path, class: "naver" %></li>
+
+                    <% else %>
+                        <li><%= link_to "Sign Up", new_user_path, class: "naver" %></li>
+                        <li><%= link_to "Log In", login_path, class: "naver" %></li>
+                        <% end %>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                      <% if current_user %>
+                      <li><%= link_to "Timeline", testimonies_path, class: "naver" %></li>
+                      <li><%= link_to "Search Verses", new_testimony_path, class: "naver" %></li>
+                      <li><%= link_to "Profile", user_path(current_user), class: "naver" %></li>
+                      <li class="naver"><%= link_to "Log Out", logout_path, class: "naver" %></li>
+
+                  <% else %>
+                      <li><%= link_to "Sign Up", new_user_path, class: "naver" %></li>
+                      <li><%= link_to "Log In", login_path, class: "naver" %></li>
+                      <% end %>
+      </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="yield-container">
+            <div class="col-sm-12">
+                <% flash.each do |name, msg| %>
+                <div class="alert <% if name==" error" || name==" alert" %> alert-danger <% else %> alert-success <% end %> fade in">
+                    <button class="close" data-dismiss="alert" >×</button>
+                    <%=  msg %>
+                </div>
+                <% end %>
+            </div>
+        </div>
+      <%= yield %>
+
+    </body>
+</html>

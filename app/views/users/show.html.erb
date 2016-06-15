@@ -1,0 +1,66 @@
+<header>
+    <div class="header-content">
+        <div class="header-content-inner"></div>
+    </div>
+</header>
+
+<section>
+    <div id="user_show_cont" class="container">
+        <!--beginning of profile section-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="profile_pic">
+                    <% if current_user.avatar.present? %>
+                    <%= link_to image_tag(@user.avatar_url, :class => "img-circle center-block img-responsive"), user_path(current_user), :"data-no-turbolink" => true %>
+                <% else %>
+                    <%= link_to image_tag(('default.png').to_s, :class => "img-circle center-block img-responsive"), user_path(current_user), :"data-no-turbolink" => true %>
+                    <% end %>
+                </div>
+                <p>
+                    <br>
+                    <b>First Name:</b>
+                    <%= @user.first_name %>
+                    <br>
+                    <b>Last Name:</b>
+                    <%= @user.last_name %>
+                    <br>
+                    <b>Username:</b>
+                    <%= @user.username %>
+                    <br>
+                    <b>Joined:</b>
+                    <%= @user.created_at.strftime("%-m-%-d-%Y") %>
+                </p>
+                <% allowed = allowed?(@user.id) %>
+                <% if allowed %>
+                <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary" %><br>
+                <br>
+                <%= link_to "Add Testimony", new_testimony_path, class: "btn btn-primary" %>
+                <% end %>
+            </div>
+            <!--end of profile section-->
+            <div class="col-md-1"></div>
+
+            <div class="col-md-8">
+                <div class="row text-center">
+                    <h2 id="title_text">Testimonies</h2>
+                </div>
+                <div class="row" style="overflow:scroll; height:550px;">
+                    <!--********LOOP THROUGH USER Testimony****************-->
+                    <% @user.testimonies.each do |t| %>
+                    <div class="card">
+                        <h4>
+                            <%= link_to "#{t.title}", testimony_path(t.id) %>
+                        </h4>
+                    </div>
+                    <div class="card-content light-blue lighten-5">
+                        <h5><%= t.verse %></h5>
+                    </div>
+                    <br>
+
+                    <% end %>
+                    <!--********CLOSE TESTIMONY LOOP****************-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

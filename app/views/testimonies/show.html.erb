@@ -1,0 +1,50 @@
+<div class="row">
+  <center>
+    <div id="test_show" class="col-lg-6 col-md-6 col-xs-6  card text-center">
+        <div class="card-action">
+            <% allowed = allowed?(@testimony.user_id) %>
+            <% if allowed %>
+            <%= link_to 'Delete &nbsp <i class="material-icons">delete</i>'.html_safe, destroy_testimony_path, class: "btn btn-danger", method: :delete, data: {confirm: "Delete #{@testimony.title}?"} %>
+            <%= link_to 'Testify &nbsp <i class="material-icons">edit</i>'.html_safe, edit_testimony_path, class: "btn btn-danger", method: :get %>
+            <%= link_to 'Reply &nbsp <i class="material-icons">comment</i>'.html_safe, new_testimony_comment_path(@testimony), class: "btn btn-danger", method: :get %>
+            <% else %>
+            <%= link_to 'Leave a Comment &nbsp <i class="material-icons">comment</i>'.html_safe, new_testimony_comment_path(@testimony), class: "btn btn-danger", method: :get %>
+            <% end %>
+        </div>
+        <div class="card-content light-blue lighten-5">
+            <h3><%= @testimony.title %></h3><br>
+            <h4><%= @testimony.verse %></h4>
+        </div>
+        <div class="card-image">
+            <% if @testimony.video.present? %>
+            <%= video_tag(@testimony.video, autoplay: :autoplay, loop: :loop, :size => "320x240", :controls => true)%>
+            <% end %>
+            <% if @testimony.picture.present? %>
+            <div>
+            <%= image_tag(@testimony.picture, :height => "320px", :width => "320px", :controls => true) %>
+            </div>
+            <% end %>
+        </div>
+        <div class="card-content">
+            <p><%= @testimony.message %></p><br>
+        </div>
+    </div>
+  </center>
+  <div id="test_show" class="col-lg-6 col-md-6 col-xs-6" style="overflow:scroll; height:1050px;">
+  <center>
+  <% @testimony.comments.each do |c| %>
+  <ul class="collection">
+      <li class="collection-item avatar">
+        <%=link_to( image_tag(c.user.avatar, :class => "img-thumbnail center-block img-responsive circle", :id => "avi"), user_path(c.user_id)) %>
+        <span class="title"><%=c.user.first_name%></span><br>
+        <p class="light-green lighten-5"> <%= c.comment %></p>
+
+        <!-- for like count coming soon -->
+        <!-- <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a> -->
+
+      </li>
+    </ul>
+  <% end %>
+ </center>
+</div>
+</div>

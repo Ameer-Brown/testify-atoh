@@ -1,0 +1,136 @@
+@import "materialize";
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require_tree .
+ *= require_self
+ */
+#prof_pic {
+    height: 150px;
+    width: 150px;
+    margin: 50px auto auto;
+    border: 1px solid;
+}
+
+
+#user_show_cont {
+    width: 100%;
+    margin-top: 100px
+}
+#forms {
+    .container {
+        margin-top: 100px;
+    }
+}
+
+.naver{
+  text-decoration: none;
+}
+.naver:hover {
+  color: #239687;
+}
+
+.navbar-brand{
+  height: 50px;
+  width: 50px
+}
+
+#tm{
+  width: 450px;
+  margin-top: 100px
+}
+.card-title {
+font-style: italic
+}
+
+.container-full {
+  margin-top: -36px;
+  width: 100%;
+  background-image: url('http://i.imgur.com/RTzap63.jpg?1')
+}
+#avi {
+  height: 50px;
+  width: 50px;
+}
+
+
+// #searchpage{
+//   margin-left: 400px;
+// }
+
+#test_show{
+  margin-top: 100px
+}
+
+.message{
+  color: white;
+  font-family: "Bad Script", cursive !important
+
+}
+.profile_pic img {
+  margin-top: 17%;
+    height: 150px;
+    width: 150px;
+}
+.card-image img{
+  -webkit-filter: brightness(60%);
+}
+
+#title_text{
+  color: #579FE3;
+}
+
+#search_text{
+  color: #ffffff;
+}
+#jumbotron_search {
+  background-image: url('https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=d751d50004159372243d7f08cfebb5b3');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+#jumbotron_splash {
+  background-image: url('http://i.giphy.com/SotJCbDWOnnWM.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+.container-index{
+  display: block;
+}
+
+
+.welcome_message{
+  // positioning
+  line-height: 100px;
+  margin-top: 200px;
+
+
+  // font
+  color: rgba(255,255,255,0.8) !important;
+  font-weight: bold;
+  font-size: 6vw;
+  text-align: center;
+  font-family: "Muli", sans-serif !important;
+
+  //border
+  background-color: rgba(87, 159, 227, 0.6);
+  border-radius: 10px;
+  border: 1px solid #579FE3;
+}

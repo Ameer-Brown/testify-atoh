@@ -1,0 +1,51 @@
+<div class="container-full">
+    <div id="tm" class="container">
+        <% @testimonies.each do |t| %>
+        <div class="col-lg-12 col-md-12 col-xs-12 card">
+            <div class="test_title">
+                <%=link_to( image_tag(t.user.avatar, :class => "img-thumbnail center-block img-responsive", :id => "avi"), user_path(t.user.id)) %>
+                <center>
+                    <h4><%= link_to "#{t.title}", testimony_path(t.id) %></h2>
+                    <div id="test_verse" class="test_verse light-blue lighten-5">
+                        <p><%= t.verse %></p>
+                    </div>
+                    <span class="light-green lighten-5">
+                        <%=t.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%I:%M%p")%></span>
+                    <br>
+                    <span class="light-green lighten-5">
+                        <%= t.created_at.strftime("%-m-%-d-%Y") %></span>
+                    <br>
+                </center>
+            </div>
+            <br>
+            <center>
+                <div>
+                    <b>View Testimony</b>
+                </div>
+                <span class="card-title activator grey-text text-darken-4">
+                    <i class="material-icons">message</i>
+                </span>
+            </center>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"><%= t.user.first_name%>
+                    <i class="material-icons right">close</i>
+                </span><br>
+                <center>
+                <% if t.message.present? %>
+                <p>" <%= t.message%> "</p>
+                <% end %>
+                <% if t.video.present? %>
+                <%= video_tag(t.video, :size => "320x240", :controls => true)%>
+                <% end %>
+                <% if t.picture.present? %>
+                <div>
+                <%= image_tag(t.picture, :height => "240px") %>
+              </div><br>
+                <% end %>
+                    <%= link_to "Leave a Comment", new_testimony_comment_path(t), class: "btn btn-danger", method: :get %>
+                </center>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
